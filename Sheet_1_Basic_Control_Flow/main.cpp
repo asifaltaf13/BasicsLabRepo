@@ -7,13 +7,24 @@
 #include <conio.h> 
 
 #include <string>
+#include <typeinfo>
 
 //A namespace is a declarative region that provides a scope to the identifiers (the names of types, functions, variables, etc) inside it.
 //Namespaces are used to organize code into logical groups and to prevent name collisions that can occur especially when your
 //code base includes multiple libraries.
 using namespace std; 
 
+
+//function definitions
 void task_1_c();
+void task_2_a();
+int min(int a, int b);
+int max(int a, int b);
+int abs(int a);
+int square(int a);
+int mean(int a, int b);
+void task_2_b_c();
+
 
 //int is the return type of the function main
 //main is the name of the function ... this is where the program enters first
@@ -24,8 +35,10 @@ int main(int argc, char** argv)
 	
 	cout << "Hello world" << endl; // cout: standard character output stream ... << insertion operator ... "Hello World" is the content in quotes 
 
-	//task_1_c
-	task_1_c();
+// Task calls
+	//task_1_c();
+	//task_2_a();
+	task_2_b_c();
 
 	_getch(); // a function from conio header ... used to get character from the user
 	return 0; // return statement of the function
@@ -50,5 +63,63 @@ void task_1_c()
 	cin >> year;
 
 	cout << "Hi, " << name << ".\nYour age is:" << cyear - year << endl;
+}
 
+void task_2_a()
+{
+	int i = 10;
+	int j = 23;
+	float f = 3.141f;
+	double d = 2.718281828459045;
+
+	cout << endl;
+	cout << i / j << " , type: " << typeid(i/j).name() << endl;
+	cout << j / i << " , type: " << typeid(j / i).name() << endl;
+	cout << i / 2 << " , type: " << typeid(i / 2).name() << endl;
+	cout << j / 2 << " , type: " << typeid(j / 2).name() << endl;
+	cout << i % 2 << " , type: " << typeid(i % 2).name() << endl;
+	cout << j % 2 << " , type: " << typeid(j % 2).name() << endl;
+	cout << (j / 3) * 3 + j % 3 << " , type: " << typeid((j / 3) * 3 + j % 3).name() << endl;
+	cout << f*f * 5 << " , type: " << typeid(f*f * 5).name() << endl;
+	cout << f / d << " , type: " << typeid(f*f * 5).name() << endl;
+	cout << d / f << " , type: " << typeid(f / d).name() << endl;
+	cout << d*i << " , type: " << typeid(d*i).name() << endl;
+	cout << d / i << " , type: " << typeid(d / i).name() << endl<<endl;
+
+	cout << f * d << " , type: " << typeid(f*d).name() << endl;
+}
+
+int min(int a, int b)
+{
+	if (a < b) {
+		return a;
+	}
+	else {
+		return b;
+	}
+}
+
+int max(int a, int b)
+{
+	return a > b ? a : b;
+}
+
+int abs(int a)
+{
+	return a < 0 ? -a : a;
+}
+
+int square(int a)
+{
+	return a*a;
+}
+
+int mean(int a, int b)
+{
+	return (a + b) / 2;
+}
+
+void task_2_b_c()
+{
+	cout << mean(min(max(10, 1), abs(-9)), 6) << endl;
 }
