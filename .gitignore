@@ -30,3 +30,13 @@
 
 *.sdf
 *.opensdf
+*.log
+*.tlog
+*.lastbuildstate
+*.ilk
+*.pdb
+*.idb
+*.sln
+*.suo
+*.vcxproj
+*.vcxproj.filters
