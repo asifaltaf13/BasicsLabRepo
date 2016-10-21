@@ -24,6 +24,15 @@ int abs(int a);
 int square(int a);
 int mean(int a, int b);
 void task_2_b_c();
+void execute_loops();
+int sum_first_N(int n);
+int sum_first_N_extra(int n);
+void fib_loop(int n);
+void task_3();
+int fib_recursion(int n);
+int cal_bi(int n, int i);
+void print_pascal();
+void task_4();
 
 
 //int is the return type of the function main
@@ -33,16 +42,22 @@ void task_2_b_c();
 int main(int argc, char** argv)
 { // starts the scope/body of the function
 	
-	cout << "Hello world" << endl; // cout: standard character output stream ... << insertion operator ... "Hello World" is the content in quotes 
+	cout << "Hello world" << endl <<endl ; // cout: standard character output stream ... << insertion operator ... "Hello World" is the content in quotes 
 
 // Task calls
 	//task_1_c();
 	//task_2_a();
-	task_2_b_c();
+	//task_2_b_c();
+	//task_3();
+	task_4();
 
 	_getch(); // a function from conio header ... used to get character from the user
 	return 0; // return statement of the function
 } // ends the scope/body of the function
+
+
+
+
 
 void task_1_c()
 {
@@ -122,4 +137,119 @@ int mean(int a, int b)
 void task_2_b_c()
 {
 	cout << mean(min(max(10, 1), abs(-9)), 6) << endl;
+}
+
+void execute_loops()
+{
+
+	cout << "Using for loop" << endl;
+	for (int i = 0; i < 10; i++)
+	{
+		cout << "This is the " << i << " th time !" << endl;
+	}
+
+	cout << "Using do while loop" << endl;
+	int a = 0;
+	do{
+		cout << "This is the " << a << " th time !" << endl;
+		a++;
+	} while (a < 10);
+
+	cout << "Using modified while loop" << endl;
+	a = 0;
+	while (true){
+		if (a > 9) break;
+		cout << "This is the " << a << " th time !" << endl;
+		a++;
+	}
+}
+
+int sum_first_N(int n)
+{
+	int sum = 0;
+
+	for (int i = 1; i < n + 1; i++){
+		sum += i;
+	}
+
+	return sum;
+}
+
+int sum_first_N_extra(int n)
+{
+	return (n*(n+1))/2;
+}
+
+void fib_loop(int n)
+{
+	int num = 0;
+	int num2 = 1;
+	int fibonacci;
+
+	for (int i = 0; i < n; i++)
+	{
+		fibonacci = num + num2;
+		num = num2;
+		num2 = fibonacci;
+	}
+
+	cout << "Loop runs "<<n<< " times and we get "<< num << " which is at position " << n+1 << " in fibonacci series."<< endl;
+}
+
+void task_3()
+{
+	//execute_loops();
+	//cout<<sum_first_N(500)<<endl;
+	//cout << sum_first_N_extra(500) << endl;
+	fib_loop(7);
+}
+
+
+int fib_recursion(int n)
+{
+	if (n == 0 || n == 1){
+		return n;
+	}
+	return fib_recursion(n - 1) + fib_recursion(n - 2);
+}
+
+int cal_bi(int n, int i)
+{
+	if (n == 1 && i == 1){
+		return 1;
+	}
+
+	if (i == 0){
+		return 1;
+	}
+
+	if (i == n){
+		return 1;
+	}
+
+	return cal_bi(n - 1, i - 1) + cal_bi(n - 1, i);
+}
+
+void print_pascal()
+{
+	for (int i = 0; i < 6; i++){
+		for (int j = 0; j <=i; j++)
+		{
+			cout << cal_bi(i, j) << " " << flush;
+		}
+		cout << endl;
+	}
+}
+
+void task_4()
+{
+
+	//cout<<fib_recursion(1)<<endl;
+	//cout<<fib_recursion(5)<<endl;
+	//cout<<fib_recursion(6)<<endl;
+	//cout<<fib_recursion(100)<<endl; // fails, the buffer in cpu cache gets overflown
+
+	//cout<<cal_bi(5,2)<<endl;
+
+	print_pascal();
 }
