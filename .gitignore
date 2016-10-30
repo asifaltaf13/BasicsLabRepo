@@ -40,3 +40,5 @@
 *.suo
 *.vcxproj
 *.vcxproj.filters
+*.iml
+*.xml
