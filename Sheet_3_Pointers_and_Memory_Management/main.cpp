@@ -19,7 +19,8 @@ char* string_copy(const char* string) {
     char* result = new char[string_length(string) + 1];
 
     int i = 0;
-    for(; i < string_length(string) ; i++){
+    int l = string_length(string);
+    for(; i < l ; i++){
 
         result[i] = string[i];
 
@@ -70,14 +71,14 @@ int main(int argc, char** argv) {
     char * result = NULL;
     result = string_copy(string_c);
 
-//    for(int i = 0 ; i < 1000000 ; i++){
-//
-//        char *temp = result;
-//        result = string_copy(result);
-//        delete [] temp;
-//
-//        // if we don't delete the temp strings, the program leaks a lot of memory
-//    }
+    for(int i = 0 ; i < 1000000 ; i++){
+
+        char *temp = result;
+        result = string_copy(result);
+        delete [] temp;
+
+        // if we don't delete the temp strings, the program leaks a lot of memory
+    }
 
     cout<<result<<endl;
     delete [] result;
