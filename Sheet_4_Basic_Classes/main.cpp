@@ -13,14 +13,12 @@ struct Vector3 {
         this->x = x;
         this->y = y;
         this->z = z;
-
     }
 };
 
 void print(const Vector3 &a)
 {
     cout << "x: " << a.x << ", y: " << a.y << ", z: " << a.z << endl;
-
 }
 
 Vector3 add(const Vector3 &a, const Vector3 &b)
@@ -75,71 +73,52 @@ Vector3 cross_product(const Vector3 &a, const Vector3 &b)
 class Line {
 
 private:
-
     Vector3 point1, point2;
 
 public:
-
     Line(const Vector3 &p1, const Vector3 &p2)
     {
-
         this->point1 = p1;
         this->point2 = p2;
-
     }
 
     const Vector3 &get_point1() const
     {
-
         return point1;
     }
 
     const Vector3 &get_point2() const
     {
-
         return point2;
-    }
-
-    Vector3 closest_point(const Vector3 &p)
-    {
-
     }
 
     double distance_to(const Vector3 &p)
     {
-
         return length(cross_product(substract(p, point1), substract(p, point2))) / length(substract(point2, point1));
     }
-
 };
 
 
 class Plane {
 
 private:
-
     Vector3 point, normal;
 
 public:
-
     Plane(Vector3 p1, Vector3 p2, Vector3 p3)
     {
-
-        normal = normalize(multiply(1.0 / length(cross_product(substract(p1, p3), substract(p2, p3))),
-                                    cross_product(substract(p1, p3), substract(p2, p3))));
-        this->point = p2;
-
+        normal = multiply(1.0 / length(cross_product(substract(p1, p3), substract(p2, p3))),
+                                    cross_product(substract(p1, p3), substract(p2, p3)));
+        this->point = p1;
     }
 
     const Vector3 &get_point()
     {
-
         return point;
     }
 
     const Vector3 &get_normal()
     {
-
         return normal;
     }
 
@@ -166,11 +145,10 @@ public:
 
         return substract(l.get_point1(), temp);
     }
-
 };
 
 
-
+// Main function
 int main()
 {
     cout << endl << "___QUESTION#1___" << endl;
@@ -219,37 +197,37 @@ int main()
     Plane plane(p1, p2, p3);
     print(plane.get_normal());
 
-    cout << "a: " << endl;
+    cout << "A: " << endl;
     cout << "Plane distance to p1: " << plane.distance_to(p1) << endl;
     cout << "Plane distance to p2: " << plane.distance_to(p2) << endl;
     cout << "Plane distance to p3: " << plane.distance_to(p3) << endl;
     cout << "Plane distance to (p1+p2+p3) / 3: " << plane.distance_to(multiply(1.0 / 3.0, add(p3, add(p1, p2)))) << endl;
     cout << "Plane distance to p1+p2+p3: " << plane.distance_to(add(p3, add(p1, p2))) << endl;
 
-    cout << endl << "b: " << endl;
+    cout << endl << "B: " << endl;
     cout << "Distance to origin: " << plane.get_hnf_d() << endl;
 
-    cout << endl << "c: " << endl;
+    cout << endl << "C: " << endl;
     cout << "Distance to origin: " << plane.distance_to(o) << endl;
 
-    cout << endl << "d: " << endl;
+    cout << endl << "D: " << endl;
     cout << "Closest point to origin: " << endl;
     print(plane.closest_point(o));
-    cout << "Distance of point to the origin: " << plane.distance_to(plane.closest_point(o)) << endl;
+    cout << "Distance of point to the origin: " << length(plane.closest_point(o)) << endl;
 
-    cout << endl << "e: " << endl;
+    cout << endl << "E: " << endl;
     // tangent is a plane that touches a curved surface but does not intersect it
-    cout << "The sphere with center origin and radius " << plane.distance_to(plane.closest_point(o))
+    cout << "The sphere with center origin and radius " << length(plane.closest_point(o))
          << " has the plane as the tangent." << endl;
 
     Line line(q1, q2);
 
-    cout << endl << "f: " << endl;
+    cout << endl << "F: " << endl;
     cout << "Distance to point p1 :" << line.distance_to(p1) << endl;
     cout << "Distance to point p2 :" << line.distance_to(p2) << endl;
     cout << "Distance to point p3 :" << line.distance_to(p3) << endl;
 
-    cout << endl << "g: " << endl;
+    cout << endl << "G: " << endl;
     cout << "Intersection point : " << endl;
     print(plane.intersect_line(line));
     cout << "Distance to plane: " << plane.distance_to(plane.intersect_line(line)) << endl;
