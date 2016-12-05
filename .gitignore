@@ -42,3 +42,13 @@
 *.vcxproj.filters
 *.iml
 *.xml
+*.cmake
+*.make
+*.bin
+*.cxx
+*.c
+*.check_cache
+*.marks
+cmake-build-debug/
+CMakeLists.txt
+
